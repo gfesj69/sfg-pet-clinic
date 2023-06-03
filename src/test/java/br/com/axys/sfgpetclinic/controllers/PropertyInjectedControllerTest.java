@@ -4,17 +4,13 @@ import br.com.axys.sfgpetclinic.services.GreetingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLOutput;
+class PropertyInjectedControllerTest {
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class PropertyInjectionControllerTest {
-
-    PropertyInjectionController controller;
+    PropertyInjectedController controller;
 
     @BeforeEach
     void setUp() {
-        controller = new PropertyInjectionController();
+        controller = new PropertyInjectedController();
 
         controller.greetingService = new GreetingServiceImpl();
     }

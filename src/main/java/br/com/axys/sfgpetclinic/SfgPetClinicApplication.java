@@ -2,9 +2,8 @@ package br.com.axys.sfgpetclinic;
 
 import br.com.axys.sfgpetclinic.controllers.ConstructorInjectedController;
 import br.com.axys.sfgpetclinic.controllers.MyController;
-import br.com.axys.sfgpetclinic.controllers.PropertyInjectionController;
+import br.com.axys.sfgpetclinic.controllers.PropertyInjectedController;
 import br.com.axys.sfgpetclinic.controllers.SetterInjectedController;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +11,10 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class SfgPetClinicApplication {
 
+
     public static void main(String[] args) {
+        Boolean Debug = false;
+
         ApplicationContext ctx = SpringApplication.run(SfgPetClinicApplication.class, args);
 
         MyController myController = (MyController) ctx.getBean("myController");
@@ -21,12 +23,26 @@ public class SfgPetClinicApplication {
 
         System.out.println(greetings);
 
+        /*
+            Just a piece of code to show all Beans and discovery what happens to do not find de Property Bean???
+         */
+        if(Debug) {
+            String[] allBeanNames = ctx.getBeanDefinitionNames();
+            Integer x = 0;
+            for (String beanName : allBeanNames) {
+                System.out.println("Bean " + x.toString() + ": " + beanName);
+                x++;
+            }
+        }
+
+        /*
+            Here we have a mistery, the Beam was defined witch capital Letter, but for some reason, that I do not have
+            a clue, the Spring Boot put the first letter a small one.....
+         */
         System.out.println("\"--------- Property");
-        PropertyInjectionController propertyInjectionController = (PropertyInjectionController) ctx.getBean("PropertyInjectionController");
+        //PropertyInjectedController propertyInjectionController = (PropertyInjectedController) ctx.getBean("PropertyInjectedController");
+        PropertyInjectedController propertyInjectionController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
         System.out.println(propertyInjectionController.getGreeting());
-/*
-        PropertyInjectionController propertyInjectedController = (PropertyInjectionController) ctx.getBean("propertyInjectedController");
-        System.out.println(propertyInjectedController.getGreeting());
 
         System.out.println("\"--------- Setter");
         SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
@@ -35,7 +51,6 @@ public class SfgPetClinicApplication {
         System.out.println("\"--------- Constructor" );
         ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
         System.out.println(constructorInjectedController.getGreeting());
-*/
-    }
 
+    }
 }
