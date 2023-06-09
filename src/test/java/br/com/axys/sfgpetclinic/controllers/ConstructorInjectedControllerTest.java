@@ -1,6 +1,6 @@
 package br.com.axys.sfgpetclinic.controllers;
 
-import br.com.axys.sfgpetclinic.services.GreetingServiceImpl;
+import br.com.axys.sfgpetclinic.services.ConstructorGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +10,7 @@ class ConstructorInjectedControllerTest {
 
     @BeforeEach
     void setup() {
-        controller = new ConstructorInjectedController(new GreetingServiceImpl());
+        controller = new ConstructorInjectedController(new ConstructorGreetingService());
     }
 
     @Test

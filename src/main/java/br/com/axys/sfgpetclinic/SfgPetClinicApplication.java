@@ -49,6 +49,7 @@ public class SfgPetClinicApplication {
             (such as those discovered by custom filters),
             ===> the default bean name generator returns the "uncapitalized non-qualified class name".
          */
+
         System.out.println("\"--------- Property");
         //PropertyInjectedController propertyInjectionController = (PropertyInjectedController) ctx.getBean("PropertyInjectedController");
         PropertyInjectedController propertyInjectionController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
